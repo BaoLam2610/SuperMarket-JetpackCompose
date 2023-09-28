@@ -2,12 +2,17 @@ package com.lambao.supermarket.presentation.ui.theme
 
 import androidx.compose.ui.graphics.Color
 
-val Purple80 = Color(0xFFD0BCFF)
-val PurpleGrey80 = Color(0xFFCCC2DC)
-val Pink80 = Color(0xFFEFB8C8)
+val ColorPrimary = Color(0xFFE55223)
+val ColorPrimarySub = Color(0xFFF8F2E2)
+val ColorSecondary = Color(0xFF787982)
+val ColorSecondarySub = Color(0xFFB9BAC3)
 
-val Purple40 = Color(0xFF6650a4)
-val PurpleGrey40 = Color(0xFF625b71)
-val Pink40 = Color(0xFF7D5260)
+val ColorCritical = Color(0xFFE64141)
+val ColorOnSurface = Color(0xFF151515)
+val ColorSurface = Color(0xFFF5F5F5)
 
-val ColorText = Color.Black
+val ColorWarning = Color(0xFFF8BD09)
+val ColorBlue = Color(0xFF606DFA)
+val ColorLine = Color(0xFFE5E5E5)
+
+val ColorText = ColorOnSurface
