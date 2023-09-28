@@ -1,4 +1,4 @@
-package com.lambao.supermarket.ui.theme
+package com.lambao.supermarket.presentation.ui.theme
 
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight

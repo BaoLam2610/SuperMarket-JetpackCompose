@@ -1,4 +1,4 @@
-package com.lambao.supermarket.ui.theme
+package com.lambao.supermarket.presentation.ui.theme
 
 import android.app.Activity
 import android.os.Build

@@ -1,4 +1,4 @@
-package com.lambao.supermarket.ui.theme
+package com.lambao.supermarket.presentation.ui.theme
 
 import androidx.compose.ui.graphics.Color
 
