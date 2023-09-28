@@ -76,8 +76,8 @@ dependencies {
     ksp(libs.android.compose.destinations.ksp)
 
     implementation(libs.dagger.hilt.android)
-    implementation(libs.dagger.hilt.android.compiler)
-    implementation(libs.android.hilt.compiler)
+    ksp(libs.dagger.hilt.android.compiler)
+    ksp(libs.android.hilt.compiler)
     implementation(libs.android.hilt.navigation.compose)
 
     implementation(libs.retrofit2.core)
