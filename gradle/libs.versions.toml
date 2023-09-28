@@ -1,0 +1,84 @@
+[versions]
+gradlePlugin = "8.1.0"
+kotlinAndroidVersion = "1.8.10"
+devtoolsKsp = "1.8.10-1.0.9"
+
+coreKtx = "1.9.0"
+lifecycleKtx = "2.6.2"
+activityCompose = "1.7.2"
+composeBom = "2023.03.00"
+constraintlayoutCompose = "1.1.0-alpha12"
+composeCoil = "2.2.2"
+
+composeDestinations = "1.9.52"
+
+daggerHilt = "2.48"
+hiltCompiler = "1.0.0"
+hiltNavigationCompose = "1.0.0"
+
+paging3 = "3.2.1"
+
+retrofit2 = "2.9.0"
+okhttp3 = "5.0.0-alpha.3"
+
+room = "2.5.2"
+
+junit = "4.13.2"
+junitExt = "1.1.5"
+espressoCore = "3.5.1"
+
+[libraries]
+android-core-ktx = { module = "androidx.core:core-ktx", version.ref = "coreKtx" }
+
+android-lifecycle-runtime-ktx = { module = "androidx.lifecycle:lifecycle-runtime-ktx", version.ref = "lifecycleKtx" }
+android-lifecycle-runtime-compose = { module = "androidx.lifecycle:lifecycle-runtime-compose", version.ref = "lifecycleKtx" }
+android-lifecycle-viewmodel-ktx = { module = "androidx.lifecycle:lifecycle-viewmodel-ktx", version.ref = "lifecycleKtx" }
+android-lifecycle-viewmodel-compose = { module = "androidx.lifecycle:lifecycle-viewmodel-compose", version.ref = "lifecycleKtx" }
+
+android-activity-compose = { module = "androidx.activity:activity-compose", version.ref = "activityCompose" }
+
+android-compose-bom = { module = "androidx.compose:compose-bom", version.ref = "composeBom" }
+android-compose-ui = { module = "androidx.compose.ui:ui" }
+android-compose-ui-graphics = { module = "androidx.compose.ui:ui-graphics" }
+android-compose-ui-tooling-preview = { module = "androidx.compose.ui:ui-tooling-preview" }
+android-compose-material3 = { module = "androidx.compose.material3:material3" }
+android-compose-constraintlayout = { module = "androidx.constraintlayout:constraintlayout-compose", version.ref = "constraintlayoutCompose" }
+android-compose-coil = { module = "io.coil-kt:coil-compose", version.ref = "composeCoil" }
+android-compose-destinations-core = { module = "io.github.raamcosta.compose-destinations:core", version.ref = "composeDestinations" }
+android-compose-destinations-ksp = { module = "io.github.raamcosta.compose-destinations:ksp", version.ref = "composeDestinations" }
+
+android-room-ktx = { module = "androidx.room:room-ktx", version.ref = "room" }
+android-room-compiler = { module = "androidx.room:room-compiler", version.ref = "room" }
+android-room-paging = { module = "androidx.room:room-paging", version.ref = "room" }
+
+dagger-hilt-android = { module = "com.google.dagger:hilt-android", version.ref = "daggerHilt" }
+dagger-hilt-android-compiler = { module = "com.google.dagger:hilt-android-compiler", version.ref = "daggerHilt" }
+android-hilt-compiler = { module = "androidx.hilt:hilt-compiler", version.ref = "hiltCompiler" }
+android-hilt-navigation-compose = { module = "androidx.hilt:hilt-navigation-compose", version.ref = "hiltNavigationCompose" }
+
+android-paging-runtime-ktx = { module = "androidx.paging:paging-runtime-ktx", version.ref = "paging3" }
+android-paging-compose = { module = "androidx.paging:paging-compose", version.ref = "paging3" }
+
+retrofit2-core = { module = "com.squareup.retrofit2:retrofit", version.ref = "retrofit2" }
+retrofit2-converter-gson = { module = "com.squareup.retrofit2:converter-gson", version.ref = "retrofit2" }
+retrofit2-converter-moshi = { module = "com.squareup.retrofit2:converter-moshi", version.ref = "retrofit2" }
+okhttp3-logging-interceptor = { module = "com.squareup.okhttp3:logging-interceptor", version.ref = "okhttp3" }
+
+android-compose-ui-test-junit4 = { module = "androidx.compose.ui:ui-test-junit4" }
+android-compose-ui-tooling = { module = "androidx.compose.ui:ui-tooling" }
+android-compose-ui-test-manifest = { module = "androidx.compose.ui:ui-test-manifest" }
+junit = { module = "junit:junit", version.ref = "junit" }
+espresso-core = { module = "androidx.test.espresso:espresso-core", version.ref = "espressoCore" }
+ext-junit = { module = "androidx.test.ext:junit", version.ref = "junitExt" }
+
+[bundles]
+compose-libs = ["android-compose-ui",
+    "android-compose-ui-graphics",
+    "android-compose-ui-tooling-preview",
+    "android-compose-material3"]
+
+[plugins]
+android-gradle-plugin = { id = "com.android.application", version.ref = "gradlePlugin" }
+jetbrains-kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlinAndroidVersion" }
+google-dagger-hilt-android = { id = "com.google.dagger.hilt.android", version.ref = "daggerHilt" }
+google-devtools-ksp = { id = "com.google.devtools.ksp", version.ref = "devtoolsKsp" }
