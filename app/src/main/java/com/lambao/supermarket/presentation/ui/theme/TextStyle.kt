@@ -6,7 +6,7 @@ import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.text.font.FontWeight
 import com.lambao.supermarket.R
 
-val InterTightFont =
+private val interTightFont =
     listOf(
         androidx.compose.ui.text.font.Font(R.font.regular, FontWeight.Normal),
         androidx.compose.ui.text.font.Font(R.font.medium, FontWeight.Medium),
@@ -14,7 +14,7 @@ val InterTightFont =
         androidx.compose.ui.text.font.Font(R.font.italic, FontWeight.Normal, FontStyle.Italic),
     )
 
-private val fontFamily = FontFamily(InterTightFont)
+private val fontFamily = FontFamily(interTightFont)
 
 object TextStyle {
     val Regular10 = TextStyle(
@@ -70,6 +70,20 @@ object TextStyle {
         fontWeight = FontWeight.Bold,
         fontFamily = fontFamily,
         fontSize = Font.default,
+        color = ColorText
+    )
+
+    val Bold16 = TextStyle(
+        fontWeight = FontWeight.Bold,
+        fontFamily = fontFamily,
+        fontSize = Font.medium,
+        color = ColorText
+    )
+
+    val Bold18 = TextStyle(
+        fontWeight = FontWeight.Bold,
+        fontFamily = fontFamily,
+        fontSize = Font.extraMedium,
         color = ColorText
     )
 }
