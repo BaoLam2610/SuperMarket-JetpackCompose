@@ -14,10 +14,9 @@ val Typography = Typography(
     titleMedium = TextStyle.Bold16,
     titleSmall = TextStyle.Bold14,
     bodyLarge = TextStyle.Regular18,
-    /**Regular16*/
     bodyMedium = TextStyle.Regular16,
     bodySmall = TextStyle.Regular14,
-    labelLarge = TextStyle.Regular18,
-    labelMedium = TextStyle.Regular16,
-    labelSmall = TextStyle.Regular14,
+    labelLarge = TextStyle.Regular14,
+    labelMedium = TextStyle.Regular12,
+    labelSmall = TextStyle.Regular10,
 )

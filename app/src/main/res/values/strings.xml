@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">SuperMarket</string>
+    <string name="home">Trang chủ</string>
+    <string name="category">Danh mục</string>
+    <string name="brand_store">Brand store</string>
+    <string name="cart">Giỏ hàng</string>
+    <string name="account">Tài khoản</string>
 </resources>
