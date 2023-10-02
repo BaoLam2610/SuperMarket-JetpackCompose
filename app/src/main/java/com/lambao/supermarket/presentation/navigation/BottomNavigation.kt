@@ -34,7 +34,7 @@ import com.lambao.supermarket.presentation.ui.theme.ColorCritical
 import com.lambao.supermarket.presentation.ui.theme.ColorPrimary
 import com.lambao.supermarket.presentation.ui.theme.ColorSecondary
 import com.lambao.supermarket.presentation.ui.theme.Dimen
-import com.lambao.supermarket.presentation.ui.theme.Icon
+import com.lambao.supermarket.presentation.ui.theme.IconSize
 import com.ramcosta.composedestinations.navigation.navigate
 import com.ramcosta.composedestinations.spec.DirectionDestinationSpec
 
@@ -136,7 +136,7 @@ fun BottomBar(
                                 else item.unselectedIcon
                             ),
                             contentDescription = null,
-                            modifier = Modifier.size(Icon.large)
+                            modifier = Modifier.size(IconSize.large)
                         )
                     }
                 }

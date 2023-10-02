@@ -34,6 +34,9 @@ object Dimen {
 
     /**64dp*/
     val extraLarge = 64.dp
+
+    /**18dp*/
+    val horizontal = 18.dp
 }
 
 /* Font size */
@@ -85,7 +88,7 @@ object Line {
 }
 
 /* Icon size*/
-object Icon {
+object IconSize {
     /**14dp*/
     val small = 14.dp
 
