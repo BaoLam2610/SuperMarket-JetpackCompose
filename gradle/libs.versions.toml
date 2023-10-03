@@ -39,6 +39,7 @@ android-activity-compose = { module = "androidx.activity:activity-compose", vers
 
 android-compose-bom = { module = "androidx.compose:compose-bom", version.ref = "composeBom" }
 android-compose-ui = { module = "androidx.compose.ui:ui" }
+android-compose-ui-util = { module = "androidx.compose.ui:ui-util" }
 android-compose-ui-graphics = { module = "androidx.compose.ui:ui-graphics" }
 android-compose-ui-tooling-preview = { module = "androidx.compose.ui:ui-tooling-preview" }
 android-compose-material3 = { module = "androidx.compose.material3:material3" }
@@ -73,6 +74,7 @@ ext-junit = { module = "androidx.test.ext:junit", version.ref = "junitExt" }
 
 [bundles]
 compose-libs = ["android-compose-ui",
+    "android-compose-ui-util",
     "android-compose-ui-graphics",
     "android-compose-ui-tooling-preview",
     "android-compose-material3"]

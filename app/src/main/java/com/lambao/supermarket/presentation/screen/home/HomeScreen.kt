@@ -1,9 +1,11 @@
 package com.lambao.supermarket.presentation.screen.home
 
+import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
@@ -12,6 +14,12 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.lazy.grid.GridCells
+import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
+import androidx.compose.foundation.lazy.grid.items
+import androidx.compose.foundation.lazy.grid.rememberLazyGridState
+import androidx.compose.foundation.pager.HorizontalPager
+import androidx.compose.foundation.pager.rememberPagerState
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
@@ -32,6 +40,10 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.constraintlayout.compose.ConstraintLayout
 import com.lambao.supermarket.R
+import com.lambao.supermarket.domain.model.Banner
+import com.lambao.supermarket.domain.model.MenuBoard
+import com.lambao.supermarket.presentation.screen.home.components.BannerItem
+import com.lambao.supermarket.presentation.screen.home.components.MenuBoardItem
 import com.lambao.supermarket.presentation.ui.extension.circleLayout
 import com.lambao.supermarket.presentation.ui.theme.ColorBlue
 import com.lambao.supermarket.presentation.ui.theme.ColorCritical
@@ -58,6 +70,7 @@ fun HomeScreen(
                 .padding(horizontal = Dimen.horizontal),
             badgeCount = "10"
         )
+
         Spacer(modifier = Modifier.height(Dimen.medium))
         SearchSection(
             modifier = Modifier
@@ -65,6 +78,55 @@ fun HomeScreen(
                 .padding(horizontal = Dimen.horizontal),
             value = searchValue,
             onValueChange = { searchValue = it })
+
+        Spacer(modifier = Modifier.height(Dimen.medium))
+        BannerSection(
+            modifier = Modifier.fillMaxWidth(),
+            banners = listOf(
+                Banner(
+                    1,
+                    "1",
+                    "https://img.freepik.com/premium-vector/fresh-healthy-vegetable-market-online-facebook-cover-banner-premium-vector_640223-41.jpg"
+                ),
+                Banner(
+                    1,
+                    "1",
+                    "https://img.freepik.com/free-vector/gradient-local-market-facebook-cover_23-2149462013.jpg"
+                ),
+                Banner(
+                    1,
+                    "1",
+                    "https://img.freepik.com/premium-vector/fresh-healthy-vegetable-market-online-facebook-cover-banner-premium-vector_640223-41.jpg"
+                ),
+                Banner(
+                    1,
+                    "1",
+                    "https://img.freepik.com/premium-vector/fresh-healthy-vegetable-market-online-facebook-cover-banner-premium-vector_640223-41.jpg"
+                ),
+                Banner(
+                    1,
+                    "1",
+                    "https://img.freepik.com/premium-vector/fresh-healthy-vegetable-market-online-facebook-cover-banner-premium-vector_640223-41.jpg"
+                ),
+            )
+        )
+
+        Spacer(modifier = Modifier.height(Dimen.medium))
+        MenuBoardSection(
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(horizontal = Dimen.extraSmall),
+            menuBoards = listOf(
+                MenuBoard(1, "Title 1", R.drawable.ic_home_filled),
+                MenuBoard(1, "Title 1", R.drawable.ic_home_filled),
+                MenuBoard(1, "Title 1", R.drawable.ic_home_filled),
+                MenuBoard(1, "Title 1", R.drawable.ic_home_filled),
+                MenuBoard(1, "Title 1", R.drawable.ic_home_filled),
+                MenuBoard(1, "Title 1", R.drawable.ic_home_filled),
+                MenuBoard(1, "Title 1", R.drawable.ic_home_filled),
+                MenuBoard(1, "Title 1", R.drawable.ic_home_filled),
+            )
+        )
     }
 }
 
@@ -175,5 +237,44 @@ fun SearchSection(
                 )
             }
         )
+    }
+}
+
+@OptIn(ExperimentalFoundationApi::class)
+@Composable
+fun BannerSection(
+    modifier: Modifier = Modifier,
+    banners: List<Banner>
+) {
+    val pagerState = rememberPagerState { banners.size }
+    Column(modifier = modifier) {
+        HorizontalPager(
+            state = pagerState,
+            contentPadding = PaddingValues(horizontal = Dimen.horizontal),
+            modifier = Modifier
+                .fillMaxWidth()
+
+        ) { page ->
+            BannerItem(banner = banners[page])
+        }
+    }
+}
+
+@Composable
+fun MenuBoardSection(
+    modifier: Modifier = Modifier,
+    menuBoards: List<MenuBoard>
+) {
+    val state = rememberLazyGridState(initialFirstVisibleItemIndex = 0)
+    LazyVerticalGrid(
+        modifier = modifier,
+        columns = GridCells.Fixed(4),  /* or Fixed(5) */
+        state = state,
+    ) {
+        items(menuBoards) {
+            MenuBoardItem(
+                menuBoard = it
+            )
+        }
     }
 }
