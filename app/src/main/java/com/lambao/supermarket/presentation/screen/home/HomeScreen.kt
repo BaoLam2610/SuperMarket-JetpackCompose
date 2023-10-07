@@ -14,10 +14,12 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
 import androidx.compose.foundation.lazy.grid.items
 import androidx.compose.foundation.lazy.grid.rememberLazyGridState
+import androidx.compose.foundation.lazy.itemsIndexed
 import androidx.compose.foundation.pager.HorizontalPager
 import androidx.compose.foundation.pager.rememberPagerState
 import androidx.compose.foundation.shape.CircleShape
@@ -44,6 +46,7 @@ import com.lambao.supermarket.domain.model.Banner
 import com.lambao.supermarket.domain.model.MenuBoard
 import com.lambao.supermarket.presentation.screen.home.components.BannerItem
 import com.lambao.supermarket.presentation.screen.home.components.MenuBoardItem
+import com.lambao.supermarket.presentation.screen.home.components.ProductSaleItem
 import com.lambao.supermarket.presentation.ui.extension.circleLayout
 import com.lambao.supermarket.presentation.ui.theme.ColorBlue
 import com.lambao.supermarket.presentation.ui.theme.ColorCritical
@@ -117,14 +120,66 @@ fun HomeScreen(
                 .fillMaxWidth()
                 .padding(horizontal = Dimen.extraSmall),
             menuBoards = listOf(
-                MenuBoard(1, "Title 1", R.drawable.ic_home_filled),
-                MenuBoard(1, "Title 1", R.drawable.ic_home_filled),
-                MenuBoard(1, "Title 1", R.drawable.ic_home_filled),
-                MenuBoard(1, "Title 1", R.drawable.ic_home_filled),
-                MenuBoard(1, "Title 1", R.drawable.ic_home_filled),
-                MenuBoard(1, "Title 1", R.drawable.ic_home_filled),
-                MenuBoard(1, "Title 1", R.drawable.ic_home_filled),
-                MenuBoard(1, "Title 1", R.drawable.ic_home_filled),
+                MenuBoard(1, R.string.bl_super_market, R.drawable.ic_app_text),
+                MenuBoard(1, R.string.member_card, R.drawable.ic_category_member_card),
+                MenuBoard(1, R.string.check_price, R.drawable.ic_category_qr_scan),
+                MenuBoard(1, R.string.store, R.drawable.ic_category_location),
+                MenuBoard(1, R.string.flash_sale, R.drawable.ic_category_flash_sale),
+                MenuBoard(1, R.string.coupon, R.drawable.ic_category_coupon),
+                MenuBoard(1, R.string.category, R.drawable.ic_category_filled),
+                MenuBoard(1, R.string.brand_store, R.drawable.ic_category_brand_store),
+            )
+        )
+        Spacer(modifier = Modifier.height(Dimen.medium))
+        ProductSaleSection(
+            modifier = Modifier
+                .fillMaxWidth(),
+            productSales = listOf(
+                Banner(
+                    1,
+                    "1",
+                    "https://img.freepik.com/premium-vector/fresh-healthy-vegetable-market-online-facebook-cover-banner-premium-vector_640223-41.jpg"
+                ),
+                Banner(
+                    1,
+                    "1",
+                    "https://img.freepik.com/free-vector/gradient-local-market-facebook-cover_23-2149462013.jpg"
+                ),
+                Banner(
+                    1,
+                    "1",
+                    "https://img.freepik.com/premium-vector/fresh-healthy-vegetable-market-online-facebook-cover-banner-premium-vector_640223-41.jpg"
+                ),
+                Banner(
+                    1,
+                    "1",
+                    "https://img.freepik.com/premium-vector/fresh-healthy-vegetable-market-online-facebook-cover-banner-premium-vector_640223-41.jpg"
+                ),
+                Banner(
+                    1,
+                    "1",
+                    "https://img.freepik.com/premium-vector/fresh-healthy-vegetable-market-online-facebook-cover-banner-premium-vector_640223-41.jpg"
+                ),
+                Banner(
+                    1,
+                    "1",
+                    "https://img.freepik.com/premium-vector/fresh-healthy-vegetable-market-online-facebook-cover-banner-premium-vector_640223-41.jpg"
+                ),
+                Banner(
+                    1,
+                    "1",
+                    "https://img.freepik.com/premium-vector/fresh-healthy-vegetable-market-online-facebook-cover-banner-premium-vector_640223-41.jpg"
+                ),
+                Banner(
+                    1,
+                    "1",
+                    "https://img.freepik.com/premium-vector/fresh-healthy-vegetable-market-online-facebook-cover-banner-premium-vector_640223-41.jpg"
+                ),
+                Banner(
+                    1,
+                    "1",
+                    "https://img.freepik.com/premium-vector/fresh-healthy-vegetable-market-online-facebook-cover-banner-premium-vector_640223-41.jpg"
+                ),
             )
         )
     }
@@ -275,6 +330,18 @@ fun MenuBoardSection(
             MenuBoardItem(
                 menuBoard = it
             )
+        }
+    }
+}
+
+@Composable
+fun ProductSaleSection(
+    modifier: Modifier = Modifier,
+    productSales: List<Banner>
+) {
+    LazyRow(modifier = modifier) {
+        itemsIndexed(productSales) { index, item ->
+            ProductSaleItem(productSale = item, position = index)
         }
     }
 }

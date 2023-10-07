@@ -1,8 +1,15 @@
 <resources>
     <string name="app_name">SuperMarket</string>
+
+    <string name="bl_super_market">BL SuperMarket</string>
     <string name="home">Trang chủ</string>
     <string name="category">Danh mục</string>
-    <string name="brand_store">Brand store</string>
+    <string name="brand_store">Thương hiệu</string>
     <string name="cart">Giỏ hàng</string>
     <string name="account">Tài khoản</string>
+    <string name="member_card">Thẻ thành viên</string>
+    <string name="check_price">Kiểm tra giá</string>
+    <string name="store">Cửa hàng</string>
+    <string name="flash_sale">Flash sale</string>
+    <string name="coupon">Mã giảm giá</string>
 </resources>

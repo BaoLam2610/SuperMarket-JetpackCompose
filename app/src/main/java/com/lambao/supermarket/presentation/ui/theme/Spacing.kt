@@ -113,3 +113,14 @@ object IconSize {
     /**64dp*/
     val extraLarge = 64.dp
 }
+
+object Elevation {
+    /**1dp*/
+    val small = 1.dp
+
+    /**2dp*/
+    val medium = 2.dp
+
+    /**3dp*/
+    val extraMedium = 3.dp
+}
