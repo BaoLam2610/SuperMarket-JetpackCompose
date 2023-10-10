@@ -2,6 +2,9 @@ package com.lambao.supermarket.presentation.navigation
 
 import androidx.annotation.DrawableRes
 import androidx.annotation.StringRes
+import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.offset
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.material3.Badge
@@ -20,6 +23,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import com.lambao.supermarket.R
 import com.lambao.supermarket.presentation.screen.NavGraphs
@@ -85,14 +89,18 @@ enum class BottomBarDestination(
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun BottomBar(
+    modifier: Modifier = Modifier,
     navController: NavController
 ) {
     val currentDestination = navController.appCurrentDestinationAsState().value
         ?: NavGraphs.root.startAppDestination
 
-    NavigationBar {
+    NavigationBar(
+            modifier = modifier
+    ) {
         BottomBarDestination.values().forEach { item ->
             NavigationBarItem(
+                modifier = Modifier.height(68.dp).offset(y = (-6).dp),
                 selected = currentDestination == item.direction,
                 onClick = {
                     navController.navigate(item.direction) {
@@ -102,9 +110,11 @@ fun BottomBar(
                 label = {
                     Text(
                         text = stringResource(id = item.label),
-                        style = MaterialTheme.typography.labelMedium,
+                        style = MaterialTheme.typography.labelSmall,
+                        maxLines = 1,
                         color = if (currentDestination == item.direction) ColorPrimary
-                        else ColorSecondary
+                        else ColorSecondary,
+                        modifier = Modifier
                     )
                 },
                 colors = NavigationBarItemDefaults.colors(
@@ -136,7 +146,7 @@ fun BottomBar(
                                 else item.unselectedIcon
                             ),
                             contentDescription = null,
-                            modifier = Modifier.size(IconSize.large)
+                            modifier = Modifier.size(IconSize.medium)
                         )
                     }
                 }

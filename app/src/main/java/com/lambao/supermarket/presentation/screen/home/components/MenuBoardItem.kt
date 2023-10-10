@@ -35,10 +35,7 @@ fun MenuBoardItem(
 ) {
     Card(
         shape = MaterialTheme.shapes.medium,
-        modifier = modifier
-            .aspectRatio(1f)
-            .padding(horizontal = Dimen.small)
-            .padding(top = Dimen.small, bottom = Elevation.medium),
+        modifier = modifier,
         elevation = CardDefaults.elevatedCardElevation(defaultElevation = Elevation.medium),
         colors = CardDefaults.cardColors(
             containerColor = Color.White
@@ -69,7 +66,7 @@ fun MenuBoardItem(
             maxLines = 1,
             modifier = Modifier
                 .padding(top = Dimen.extraSmall)
-                .padding(horizontal = Dimen.small)
+                .padding(horizontal = Dimen.normal)
                 .align(Alignment.CenterHorizontally)
                 .basicMarquee(iterations = Int.MAX_VALUE)
         )

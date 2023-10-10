@@ -29,6 +29,9 @@ object Dimen {
     /**20dp*/
     val extraMedium = 20.dp
 
+    /**24dp*/
+    val xLarge = 24.dp
+
     /**32dp*/
     val large = 32.dp
 

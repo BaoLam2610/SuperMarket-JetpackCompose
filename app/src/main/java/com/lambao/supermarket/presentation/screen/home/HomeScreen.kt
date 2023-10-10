@@ -5,9 +5,12 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.ExperimentalLayoutApi
+import androidx.compose.foundation.layout.FlowRow
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.aspectRatio
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
@@ -15,14 +18,12 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyRow
-import androidx.compose.foundation.lazy.grid.GridCells
-import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
-import androidx.compose.foundation.lazy.grid.items
-import androidx.compose.foundation.lazy.grid.rememberLazyGridState
 import androidx.compose.foundation.lazy.itemsIndexed
 import androidx.compose.foundation.pager.HorizontalPager
 import androidx.compose.foundation.pager.rememberPagerState
+import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.CircleShape
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
@@ -38,8 +39,11 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.unit.Dp
+import androidx.compose.ui.unit.dp
 import androidx.constraintlayout.compose.ConstraintLayout
 import com.lambao.supermarket.R
 import com.lambao.supermarket.domain.model.Banner
@@ -53,6 +57,7 @@ import com.lambao.supermarket.presentation.ui.theme.ColorCritical
 import com.lambao.supermarket.presentation.ui.theme.ColorPrimary
 import com.lambao.supermarket.presentation.ui.theme.ColorSecondary
 import com.lambao.supermarket.presentation.ui.theme.Dimen
+import com.lambao.supermarket.presentation.ui.theme.Elevation
 import com.lambao.supermarket.presentation.ui.theme.IconSize
 import com.ramcosta.composedestinations.annotation.Destination
 import com.ramcosta.composedestinations.navigation.DestinationsNavigator
@@ -62,10 +67,15 @@ import com.ramcosta.composedestinations.navigation.DestinationsNavigator
 fun HomeScreen(
     navigator: DestinationsNavigator
 ) {
+    val scrollState = rememberScrollState()
     var searchValue by remember {
         mutableStateOf("")
     }
-    Column(modifier = Modifier.fillMaxSize()) {
+    Column(
+        modifier = Modifier
+            .fillMaxSize()
+            .verticalScroll(scrollState)
+    ) {
         Spacer(modifier = Modifier.height(Dimen.large))
         LocationSection(
             modifier = Modifier
@@ -117,8 +127,7 @@ fun HomeScreen(
         Spacer(modifier = Modifier.height(Dimen.medium))
         MenuBoardSection(
             modifier = Modifier
-                .fillMaxWidth()
-                .padding(horizontal = Dimen.extraSmall),
+                .fillMaxWidth(),
             menuBoards = listOf(
                 MenuBoard(1, R.string.bl_super_market, R.drawable.ic_app_text),
                 MenuBoard(1, R.string.member_card, R.drawable.ic_category_member_card),
@@ -182,10 +191,61 @@ fun HomeScreen(
                 ),
             )
         )
+
+        ProductSaleSection(
+            modifier = Modifier
+                .fillMaxWidth(),
+            productSales = listOf(
+                Banner(
+                    1,
+                    "1",
+                    "https://img.freepik.com/premium-vector/fresh-healthy-vegetable-market-online-facebook-cover-banner-premium-vector_640223-41.jpg"
+                ),
+                Banner(
+                    1,
+                    "1",
+                    "https://img.freepik.com/free-vector/gradient-local-market-facebook-cover_23-2149462013.jpg"
+                ),
+                Banner(
+                    1,
+                    "1",
+                    "https://img.freepik.com/premium-vector/fresh-healthy-vegetable-market-online-facebook-cover-banner-premium-vector_640223-41.jpg"
+                ),
+                Banner(
+                    1,
+                    "1",
+                    "https://img.freepik.com/premium-vector/fresh-healthy-vegetable-market-online-facebook-cover-banner-premium-vector_640223-41.jpg"
+                ),
+                Banner(
+                    1,
+                    "1",
+                    "https://img.freepik.com/premium-vector/fresh-healthy-vegetable-market-online-facebook-cover-banner-premium-vector_640223-41.jpg"
+                ),
+                Banner(
+                    1,
+                    "1",
+                    "https://img.freepik.com/premium-vector/fresh-healthy-vegetable-market-online-facebook-cover-banner-premium-vector_640223-41.jpg"
+                ),
+                Banner(
+                    1,
+                    "1",
+                    "https://img.freepik.com/premium-vector/fresh-healthy-vegetable-market-online-facebook-cover-banner-premium-vector_640223-41.jpg"
+                ),
+                Banner(
+                    1,
+                    "1",
+                    "https://img.freepik.com/premium-vector/fresh-healthy-vegetable-market-online-facebook-cover-banner-premium-vector_640223-41.jpg"
+                ),
+                Banner(
+                    1,
+                    "1",
+                    "https://img.freepik.com/premium-vector/fresh-healthy-vegetable-market-online-facebook-cover-banner-premium-vector_640223-41.jpg"
+                ),
+            )
+        )
     }
 }
 
-@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun LocationSection(
     modifier: Modifier = Modifier,
@@ -292,6 +352,7 @@ fun SearchSection(
                 )
             }
         )
+
     }
 }
 
@@ -315,19 +376,25 @@ fun BannerSection(
     }
 }
 
+@OptIn(ExperimentalLayoutApi::class)
 @Composable
 fun MenuBoardSection(
     modifier: Modifier = Modifier,
     menuBoards: List<MenuBoard>
 ) {
-    val state = rememberLazyGridState(initialFirstVisibleItemIndex = 0)
-    LazyVerticalGrid(
+    val itemSize: Dp = ((LocalConfiguration.current.screenWidthDp.dp) / 4)
+    FlowRow(
+        horizontalArrangement = Arrangement.SpaceBetween,
         modifier = modifier,
-        columns = GridCells.Fixed(4),  /* or Fixed(5) */
-        state = state,
+        maxItemsInEachRow = 4
     ) {
-        items(menuBoards) {
+        menuBoards.forEach {
             MenuBoardItem(
+                modifier = Modifier
+                    .width(itemSize)
+                    .padding(horizontal = 4.dp)
+                    .padding(top = Dimen.small, bottom = Elevation.medium)
+                    .aspectRatio(1f),
                 menuBoard = it
             )
         }

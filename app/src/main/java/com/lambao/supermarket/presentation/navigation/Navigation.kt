@@ -1,10 +1,14 @@
 package com.lambao.supermarket.presentation.navigation
 
 import android.annotation.SuppressLint
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.offset
+import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
+import androidx.compose.ui.Modifier
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
@@ -14,6 +18,7 @@ import com.lambao.supermarket.presentation.screen.destinations.BrandStoreScreenD
 import com.lambao.supermarket.presentation.screen.destinations.CartScreenDestination
 import com.lambao.supermarket.presentation.screen.destinations.CategoryScreenDestination
 import com.lambao.supermarket.presentation.screen.destinations.HomeScreenDestination
+import com.lambao.supermarket.presentation.ui.theme.Dimen
 import com.ramcosta.composedestinations.DestinationsNavHost
 
 
@@ -22,14 +27,19 @@ import com.ramcosta.composedestinations.DestinationsNavHost
 @Composable
 fun SetupNavigation() {
     val navController = rememberNavController()
-
+    val paddingBottom = Dimen.xLarge
     Scaffold(
         bottomBar = {
             if (showBottomBar(navController = navController))
-                BottomBar(navController)
+                BottomBar(
+                    modifier = Modifier.offset(y = paddingBottom),
+                    navController = navController
+                )
         }
-    ) {
-        NavHost(navController = navController)
+    ) { innerPadding ->
+        Box(modifier = Modifier.padding(bottom = innerPadding.calculateBottomPadding() - paddingBottom)) {
+            NavHost(navController = navController)
+        }
     }
 }
 

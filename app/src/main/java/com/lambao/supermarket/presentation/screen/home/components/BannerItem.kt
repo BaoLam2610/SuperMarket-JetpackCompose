@@ -20,7 +20,7 @@ fun BannerItem(
     Card(
         shape = MaterialTheme.shapes.medium,
         modifier = modifier
-            .height(185.dp)
+            .height(150.dp)
             .padding(horizontal = Dimen.normal)
     /*.graphicsLayer {
             val pageOffset = (
