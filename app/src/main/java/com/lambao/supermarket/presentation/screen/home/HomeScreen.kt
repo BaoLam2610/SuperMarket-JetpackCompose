@@ -41,6 +41,7 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.buildAnnotatedString
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
@@ -48,14 +49,18 @@ import androidx.constraintlayout.compose.ConstraintLayout
 import com.lambao.supermarket.R
 import com.lambao.supermarket.domain.model.Banner
 import com.lambao.supermarket.domain.model.MenuBoard
+import com.lambao.supermarket.domain.model.Product
+import com.lambao.supermarket.domain.model.Promotion
 import com.lambao.supermarket.presentation.screen.home.components.BannerItem
 import com.lambao.supermarket.presentation.screen.home.components.MenuBoardItem
+import com.lambao.supermarket.presentation.screen.home.components.ProductItem
 import com.lambao.supermarket.presentation.screen.home.components.ProductSaleItem
 import com.lambao.supermarket.presentation.ui.extension.circleLayout
 import com.lambao.supermarket.presentation.ui.theme.ColorBlue
 import com.lambao.supermarket.presentation.ui.theme.ColorCritical
 import com.lambao.supermarket.presentation.ui.theme.ColorPrimary
 import com.lambao.supermarket.presentation.ui.theme.ColorSecondary
+import com.lambao.supermarket.presentation.ui.theme.ColorText
 import com.lambao.supermarket.presentation.ui.theme.Dimen
 import com.lambao.supermarket.presentation.ui.theme.Elevation
 import com.lambao.supermarket.presentation.ui.theme.IconSize
@@ -139,7 +144,7 @@ fun HomeScreen(
                 MenuBoard(1, R.string.brand_store, R.drawable.ic_category_brand_store),
             )
         )
-        Spacer(modifier = Modifier.height(Dimen.medium))
+        /*Spacer(modifier = Modifier.height(Dimen.medium))
         ProductSaleSection(
             modifier = Modifier
                 .fillMaxWidth(),
@@ -241,6 +246,43 @@ fun HomeScreen(
                     "1",
                     "https://img.freepik.com/premium-vector/fresh-healthy-vegetable-market-online-facebook-cover-banner-premium-vector_640223-41.jpg"
                 ),
+            )
+        )*/
+
+        Spacer(modifier = Modifier.height(Dimen.medium))
+        ProductSection(
+            modifier = Modifier
+                .fillMaxWidth(),
+            products =
+            listOf(
+                Product(
+                    1,
+                    "Product 1",
+                    "https://img.freepik.com/premium-vector/fresh-healthy-vegetable-market-online-facebook-cover-banner-premium-vector_640223-41.jpg",
+                    1000000,
+                    Promotion(1, 2.5f)
+                ),
+                Product(
+                    1,
+                    "Product 1",
+                    "https://img.freepik.com/premium-vector/fresh-healthy-vegetable-market-online-facebook-cover-banner-premium-vector_640223-41.jpg",
+                    1000000,
+                    Promotion(1, 2.5f)
+                ),
+                Product(
+                    1,
+                    "Product 1",
+                    "https://img.freepik.com/premium-vector/fresh-healthy-vegetable-market-online-facebook-cover-banner-premium-vector_640223-41.jpg",
+                    1000000,
+                    Promotion(1, 2.5f)
+                ),
+                Product(
+                    1,
+                    "Product 1",
+                    "https://img.freepik.com/premium-vector/fresh-healthy-vegetable-market-online-facebook-cover-banner-premium-vector_640223-41.jpg",
+                    1000000,
+                    Promotion(1, 2.5f)
+                )
             )
         )
     }
@@ -409,6 +451,49 @@ fun ProductSaleSection(
     LazyRow(modifier = modifier) {
         itemsIndexed(productSales) { index, item ->
             ProductSaleItem(productSale = item, position = index)
+        }
+    }
+}
+
+@Composable
+fun ProductSection(
+    modifier: Modifier,
+    products: List<Product>
+) {
+    Column(modifier = modifier) {
+        Row(
+            modifier = Modifier.fillMaxWidth(),
+            verticalAlignment = Alignment.CenterVertically,
+            horizontalArrangement = Arrangement.SpaceBetween
+        ) {
+            Text(
+                text = "Sản phẩm",
+                style = MaterialTheme.typography.titleLarge,
+                color = ColorCritical,
+                modifier = Modifier.padding(horizontal = Dimen.horizontal)
+            )
+
+            Text(
+                text = buildAnnotatedString {
+                    append("Xem thêm")
+                },
+                style = MaterialTheme.typography.labelMedium,
+                color = ColorText,
+                modifier = Modifier.padding(horizontal = Dimen.horizontal),
+            )
+        }
+
+
+        Spacer(modifier = Modifier.height(Dimen.normal))
+        LazyRow(modifier = Modifier.fillMaxWidth()) {
+            itemsIndexed(products) { index, item ->
+                ProductItem(
+                    modifier = Modifier
+                        .padding(start = Dimen.normal)
+                        .width(150.dp),
+                    product = item
+                )
+            }
         }
     }
 }
