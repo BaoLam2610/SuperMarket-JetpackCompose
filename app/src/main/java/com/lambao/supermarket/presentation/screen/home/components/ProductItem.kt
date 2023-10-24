@@ -19,10 +19,13 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.constraintlayout.compose.ConstraintLayout
 import coil.compose.AsyncImage
 import com.lambao.supermarket.common.addEmptyLines
+import com.lambao.supermarket.common.castToDiscount
+import com.lambao.supermarket.common.castToMoney
 import com.lambao.supermarket.domain.model.Product
 import com.lambao.supermarket.presentation.ui.theme.ColorCritical
 import com.lambao.supermarket.presentation.ui.theme.ColorPrimary
@@ -37,6 +40,7 @@ fun ProductItem(
     ConstraintLayout(
         modifier = modifier
             .clip(MaterialTheme.shapes.extraSmall)
+            .background(Color.White)
     ) {
         val (item, discount) = createRefs()
         Column(
@@ -60,15 +64,16 @@ fun ProductItem(
             Spacer(modifier = Modifier.height(Dimen.tiny))
 
             Text(
-                text = product.price.toString(),
-                style = MaterialTheme.typography.labelLarge,
+                text = product.price.castToMoney(),
+                style = MaterialTheme.typography.titleSmall,
                 color = ColorPrimary
             )
 
             Text(
-                text = product.getDiscountPrice().toString(),
+                text = product.getDiscountPrice().castToMoney(),
                 style = MaterialTheme.typography.labelMedium,
-                color = ColorSecondary
+                color = ColorSecondary,
+                textDecoration = TextDecoration.LineThrough
             )
 
             Text(
@@ -84,6 +89,7 @@ fun ProductItem(
                 modifier = Modifier
                     .fillMaxWidth()
                     .padding(horizontal = Dimen.horizontal)
+                    .padding(vertical = Dimen.extraSmall)
                     .clip(MaterialTheme.shapes.medium)
                     .background(ColorCritical)
                     .padding(vertical = Dimen.small),
@@ -99,13 +105,13 @@ fun ProductItem(
         }
 
         Text(
-            text = product.promotion.discount.toString(),
+            text = product.promotion.discount.castToDiscount(),
             style = MaterialTheme.typography.labelSmall,
             color = Color.White,
             modifier = Modifier
                 .clip(RoundedCornerShape(topStart = Dimen.extraSmall, bottomEnd = Dimen.extraSmall))
                 .background(ColorPrimary)
-                .padding(vertical = Dimen.small, horizontal = Dimen.extraNormal)
+                .padding(vertical = Dimen.small, horizontal = Dimen.small)
                 .constrainAs(discount) {
                     top.linkTo(parent.top)
                     start.linkTo(parent.start)

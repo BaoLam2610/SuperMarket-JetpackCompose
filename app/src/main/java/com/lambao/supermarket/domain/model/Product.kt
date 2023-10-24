@@ -7,7 +7,7 @@ data class Product(
     val price: Long,
     val promotion: Promotion,
 ) {
-    fun getDiscountPrice() = price * promotion.discount
+    fun getDiscountPrice() = (price * promotion.discount).toLong()
 }
 
 data class Promotion(

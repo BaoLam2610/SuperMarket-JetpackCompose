@@ -144,7 +144,7 @@ fun HomeScreen(
                 MenuBoard(1, R.string.brand_store, R.drawable.ic_category_brand_store),
             )
         )
-        /*Spacer(modifier = Modifier.height(Dimen.medium))
+        Spacer(modifier = Modifier.height(Dimen.medium))
         ProductSaleSection(
             modifier = Modifier
                 .fillMaxWidth(),
@@ -247,7 +247,7 @@ fun HomeScreen(
                     "https://img.freepik.com/premium-vector/fresh-healthy-vegetable-market-online-facebook-cover-banner-premium-vector_640223-41.jpg"
                 ),
             )
-        )*/
+        )
 
         Spacer(modifier = Modifier.height(Dimen.medium))
         ProductSection(
@@ -271,7 +271,7 @@ fun HomeScreen(
                 ),
                 Product(
                     1,
-                    "Product 1",
+                    "Product 3",
                     "https://img.freepik.com/premium-vector/fresh-healthy-vegetable-market-online-facebook-cover-banner-premium-vector_640223-41.jpg",
                     1000000,
                     Promotion(1, 2.5f)
